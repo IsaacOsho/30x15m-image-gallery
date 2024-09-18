@@ -1,61 +1,76 @@
 /* General styling */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #333333;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #333333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Responsive grid */
+  gap: 5px; /* Small gap between images */
+  padding: 5px;
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  justify-items: center;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures the image fits without distortion */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-radius: 5px; /* Optional: rounds the corners slightly */
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#overlay img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .gallery {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust for medium devices */
   }
-  
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px;
+}
+
+@media (max-width: 600px) {
+  .gallery {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjust for smaller devices */
   }
-  
-  /* Create four equal columns that sits next to each other */
-  .column {
-    flex: 25%;
-    max-width: 25%;
-    padding: 0 4px;
+
+  #overlay img {
+      max-width: 80%;
+      max-height: 80%;
   }
-  
-  .column img {
-    margin-top: 8px;
-    vertical-align: middle;
-    width: 100%;
-  }
-  
-  /* Responsive layout - makes a two column-layout instead of four columns */
-  @media screen and (max-width: 800px) {
-    .column {
-      flex: 50%;
-      max-width: 50%;
-    }
-  }
-  
-  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
-    .column {
-      flex: 100%;
-      max-width: 100%;
-    }
-  }
-  
-  /* Image styling */
-  .gallery img {
-    width: 100%;
-    height: auto;
-    
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  /* Hover effect for images */
-  .gallery img:hover {
-    transform: scale(1.05);
-  }
-  
+}
